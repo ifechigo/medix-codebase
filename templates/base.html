@@ -69,8 +69,26 @@
           background: rgb(0, 89, 255);
       }
 
-    </style>
+      .back {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            z-index: 300;
+            text-decoration: none;
+            background: rgb(0, 89, 255);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            width: 100px;
+            padding: 5px;
+        }
 
+        .back:hover {
+            opacity: 1;
+            background: skyblue;
+        }
+    </style>
+    <a class="back" href="{% url 'home' %}">Statistics</a>
     <div class="main">
       <div class="container">
         <h2 class="topic">
@@ -87,6 +105,7 @@
         <a class="login" href="{% url 'logout' %}">Log Out</a> 
         {%  else %}
         <a class="signup" href="{% url 'signup' %}">Sign Up</a>
+        <a class="signup" href="{% url 'pratitioner-signup' %}">Practitioner Sign Up</a>
         <a class="login" href="{% url 'login' %}">Log In</a>
         {%  endif %}
       </div>

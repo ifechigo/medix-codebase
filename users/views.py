@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, HttpResponse
 from django.template import loader
 from django.contrib import messages
@@ -11,6 +12,7 @@ from chartjs.views.lines import BaseLineChartView
 from .models import *
 from .forms import *
 from .filters import *
+from .decorators import *
 
 
 # Create your views here.
@@ -28,14 +30,18 @@ def pratitioner_sign_up_page(request):
         form = CreateUserForm(request.POST)
 
         if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
             
             username = form.cleaned_data.get('username')
 
             group = Group.objects.get(name='doctor')
 
+            user = form.save(commit=False)
+
+            user.save()
+
             user.groups.add(group)
+
+            user.save()
 
             messages.success(request, 'Account created for ' + username)
             return redirect('login')
@@ -53,14 +59,20 @@ def sign_up_page(request):
         form = CreateUserForm(request.POST)
 
         if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-            
             username = form.cleaned_data.get('username')
+
+            group = Group.objects.get(name='patient')
+
+            user = form.save(commit=False)
+
+            user.save()
+
+            user.groups.add(group)
+
+            user.save()
 
             messages.success(request, 'Account created for ' + username)
             return redirect('login')
-
     
     context = { 'form': form}
     return render(request, 'users/register.html', context)
@@ -85,32 +97,43 @@ def login_page(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['patient'])
 def user_medical_record(request):
-
-    #MedicalFormSet = inlineformset_factory(Users, MedicalRecord, fields=('__all__'))
-
-    #user = request.get(user)
 
     form = MedicalRecordForm()
 
     if request.method == 'POST':
-
         form = MedicalRecordForm(request.POST)
 
         if form.is_valid():
-            # report = form.save(commit=False)
-            form.save()
-            return HttpResponse('thanks')
-        # else:
-        #     form = MedicalForm()
+            age = form.cleaned_data['age']
+            ethnicity = form.cleaned_data['ethnicity']
+            marital_status = form.cleaned_data.get('marital_status')
+            employment_status = form.cleaned_data.get('employment_status')
+            gender = form.cleaned_data.get('gender')
+            food_allergy = form.cleaned_data.get('food_allergy')
+            drug_allergy = form.cleaned_data.get('drug_allergy')
+            emergency_medication = form.cleaned_data.get('emergency_medication')
+            tetanus_injection = form.cleaned_data.get('tetanus_injection')
+            malaria = form.cleaned_data.get('malaria')
+            fever = form.cleaned_data.get('fever')
+            disabilities = form.cleaned_data.get('disabilities')
+            covid19 = form.cleaned_data.get('covid19')
+            ebola = form.cleaned_data.get('ebola')
+            ulcer = form.cleaned_data.get('ulcer')
 
-        # form = CreateUserForm()
+            medical_record = form.save(commit=False)
 
+            medical_record.save()
+            return HttpResponseRedirect('thanks')
 
+    else:
+        form = RecordForm()
+        
     context = { 'form': form }
     return render(request, 'users/record.html', context)
 
@@ -132,7 +155,7 @@ class LineChartJSONView(BaseLineChartView):
                 [87, 21, 94, 3, 90, 13, 65]]
 
 
-line_chart = TemplateView.as_view(template_name='line_chart.html')
+line_chart = TemplateView.as_view(template_name='users/chart.html')
 line_chart_json = LineChartJSONView.as_view()
 
 def statistical_details(request):
