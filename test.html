@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <head>
+    <title>welcome! client</title>
+  </head>
+  <body>
+    <style>
+      /* main wrapper */
+      body{
+          background-image: url('static/images/pexels-lukas-590016.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          margin: 0px;
+          font-family: sans-serif;
+      }
+      h2{
+          font-weight: 600;
+      }
+      .main{
+          display: block;
+          margin: 25% 5% 10% 5%;
+      }
+
+      /* container */
+      .container{
+          text-align: center;
+      }
+      .goto-container{
+          display: flex;
+          justify-content: space-evenly;
+          margin-top: 30px;
+          padding: 0 2rem;
+          padding-top: 10px;
+      }
+      .topic{
+          font-size: 3.2rem;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          padding-top: 1.5rem;
+      }
+      .text{
+          font-size: 16px;
+          padding: 0 10px;
+          font-weight: 400;
+      }
+      .signup, .login {
+          text-decoration: none;
+          background: blue;
+          color: white;
+          border-radius: 5px;
+          text-align: center;
+          width: 150px;
+          padding: 5px;
+          
+      }
+
+      .login a, .signup a {
+          text-decoration: none;
+          color: white;
+          
+      }
+
+      .signup:hover, .login:hover{
+          opacity: 1;
+          background: rgb(0, 89, 255);
+      }
+
+    </style>
+
+    <div class="main">
+      <div class="container">
+        <h2 class="topic">Welcome to Medix</h4>
+        <h4 class="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut dolorem harum voluptatem, veritatis maiores vel laborum quasi nisi facere vitae! Error voluptate quasi quisquam, ipsam enim suscipit soluta id eos?</h4>
+      </div>
+      <div class="goto-container">
+        <a class="signup" href="{% url 'register' %}">Sign Up</a>
+        <a class="login" href="{% url 'login' %}">Log In</a>
+      </div>
+    </div>
+
+  </body>
+</html>

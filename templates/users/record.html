@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>medical record</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../../static/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="../../static/css/record.css">
+</head>
+<body>
+    <style>
+        .back {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            z-index: 300;
+            text-decoration: none;
+            background: skyblue;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            width: 100px;
+            padding: 5px;
+        }
+        .back:hover {
+            opacity: 1;
+            background: rgb(0, 89, 255);
+        }
+    </style>
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <a class="back" href="{% url 'home' %}">Home</a>
+                <div class="signup-img">
+                    <img src="../../static/images/signup-img.jpg" alt="">
+                </div>
+                <div class="signup-form">
+                    <form method="POST" class="register-form" id="register-form" action="">
+                        {% csrf_token %}
+                        <h2>medical assessement form</h2>
+                        <div class="form-group">
+                            <label for="email">Email ID :</label>
+                            <input type="email" value="{{ request.user.email }}" name="user" id="email" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Age :</label>
+                            <input type="text" name="age" id="address" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Ethnicity :</label>
+                            <input type="text" name="ethnicity" id="address" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Marital Status :</label>
+                            <input type="text" name="marital_status" id="address" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Employment Status :</label>
+                            <input type="text" name="employment_status" id="address" required/>
+                        </div>
+                        <div class="form-radio">
+                            <label for="gender" class="radio-label">Gender :</label>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender" id="male" checked>
+                                <label for="male">Male</label>
+                                <span class="check"></span>
+                            </div>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender" id="female">
+                                <label for="female">Female</label>
+                                <span class="check"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">Food Allergy :</label>
+                                <div class="form-select">
+                                    <select name="food_allergy" id="state">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Drug Allergy :</label>
+                                <div class="form-select">
+                                    <select name="durg_allergy" id="city">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">Emergency Medication :</label>
+                                <div class="form-select">
+                                    <select name="emergency_medication" id="state">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Tetanus Injection :</label>
+                                <div class="form-select">
+                                    <select name="tetanus_injection" id="city">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">Malaria :</label>
+                                <div class="form-select">
+                                    <select name="malaria" id="state">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Fever :</label>
+                                <div class="form-select">
+                                    <select name="fever" id="city">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">Disabilities :</label>
+                                <div class="form-select">
+                                    <select name="disabilities" id="state">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Covid19 :</label>
+                                <div class="form-select">
+                                    <select name="covid19" id="city">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">Ebola :</label>
+                                <div class="form-select">
+                                    <select name="ebola" id="state">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Ulcer :</label>
+                                <div class="form-select">
+                                    <select name="ulcer" id="city">
+                                        <option value="True">YES</option>
+                                        <option value="False">NO</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <input type="submit" value="Reset All" class="submit" name="reset" id="reset" />
+                            <input type="submit" value="Submit Form" class="submit" name="submit" id="submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="../../staticvendor/jquery/jquery.min.js"></script>
+    <script src="../../static/js/main.js"></script>
+</body>
+</html>
