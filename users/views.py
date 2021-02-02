@@ -141,18 +141,19 @@ def user_medical_record(request):
 class LineChartJSONView(BaseLineChartView):
     def get_labels(self):
         """Return 7 labels for the x-axis."""
-        return ["January", "February", "March", "April", "May", "June", "July"]
+        return ["February", "March", "April", "May", "June", "July", "August"]
 
     def get_providers(self):
         """Return names of datasets."""
-        return ["Central", "Eastside", "Westside"]
+        return ["Ebola", "Ulcer", "Malaria", "Covid19"]
 
     def get_data(self):
-        """Return 3 datasets to plot."""
+        """Return 4 demo datasets to plot."""
 
         return [[75, 44, 92, 11, 44, 95, 35],
                 [41, 92, 18, 3, 73, 87, 92],
-                [87, 21, 94, 3, 90, 13, 65]]
+                [87, 21, 94, 3, 90, 13, 65],
+                [22, 16, 9, 37, 13, 67, 32]]
 
 
 line_chart = TemplateView.as_view(template_name='users/chart.html')
