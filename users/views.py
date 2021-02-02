@@ -158,9 +158,3 @@ class LineChartJSONView(BaseLineChartView):
 
 line_chart = TemplateView.as_view(template_name='users/chart.html')
 line_chart_json = LineChartJSONView.as_view()
-
-def statistical_details(request):
-
-
-    context = {}
-    return render(request, '', context)

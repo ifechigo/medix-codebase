@@ -10,7 +10,6 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout'),
 
     path('medical-record/', views.user_medical_record, name='medical-record'),
-    path('statistics/', views.statistical_details, name='statistics'),
 
     path('chart/', views.line_chart, name='line_chart'),
     path('chartJSON/', views.line_chart_json, name='line_chart_json'),
